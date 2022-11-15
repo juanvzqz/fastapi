@@ -1,0 +1,10 @@
+__pycache__
+venv/
+C:/Users/juanv/.conda/envs/FastAPI-ORM
+.env
+
+# CREATE REQUIREMENTS FILE
+# pip freeze > requirements.txt
+
+# INSTALL DEPENDENCIES
+# pip install -r requirements.txt

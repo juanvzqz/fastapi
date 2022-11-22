@@ -132,7 +132,8 @@ def test_posts(test_user, session, test_user2):
 
     session.add_all(posts)
     # session.add_all([models.Post(title="first title", content="first content", owner_id=test_user['id']),
-    #                 models.Post(title="2nd title", content="2nd content", owner_id=test_user['id']), models.Post(title="3rd title", content="3rd content", owner_id=test_user['id'])])
+    #                 models.Post(title="2nd title", content="2nd content", owner_id=test_user['id']),
+    #                 models.Post(title="3rd title", content="3rd content", owner_id=test_user['id'])])
     session.commit()
     posts = session.query(models.Post).all()
     return posts

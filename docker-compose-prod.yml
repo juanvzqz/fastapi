@@ -1,0 +1,52 @@
+version: "3"
+services:
+  api:
+      image: username/repository # DOCKERHUB
+      depends_on:
+        - postgres  # to create the DB image first
+      ports:
+        # - <port on localhost>:<port on container>
+        - 80:8000
+
+      # overrides the dockerfile to reload
+      # command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+      # could be commented because it is in the Dockerfile
+
+      # ENVIRONMENT VARIABLES
+      # OPTION 1 - refer to the .env file
+      # env_file:
+      #  - ./.env
+
+      # OPTION 2 - list all the variables
+      environment:
+        - DATABASE_HOSTNAME=${DATABASE_HOSTNAME}
+        - DATABASE_PORT=${DATABASE_PORT}
+        - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+        - DATABASE_NAME=${DATABASE_NAME}
+        - DATABASE_USERNAME=${DATABASE_USERNAME}
+        - SECRET_KEY=${SECRET_KEY}
+        - ALGORITHM=${ALGORITHM}
+        - ACCESS_TOKEN_EXPIRE_MINUTES=${ACCESS_TOKEN_EXPIRE_MINUTES}
+
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${DATABASE_NAME}
+
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+
+volumes:
+  postgres-db:
+
+# docker-compose up -d
+# docker-compose up -d --build  to force to  recreate the image
+
+# TO COMPOSE UP A SPECIFIC FILE NAME
+# docker-compose -f docker-compose-prod.yml up -d
+# docker-compose -f docker-compose-prod.yml down
+
+
+# docker logs
+# docker-compose down # TO DELETE THE CONTAINERS

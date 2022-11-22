@@ -20,9 +20,9 @@ router = APIRouter(
 # "/" represents the path of the URL (after the 127.0.0.1:8000) f.e: "/posts" means 127.0.0.1:8000/posts
 # if two functions have a similar path, it will take the first one. Order matters.
 # every change requires to stop the re run the server except uvicorn main:app --reload (only in development env)
-@router.get("/")
-def root():
-    return {"message": "Welcome to my API!"}
+# @router.get("/")
+# def root():
+#     return {"message": "Welcome to my API!"}
 
 
 # CREATE -------------------
